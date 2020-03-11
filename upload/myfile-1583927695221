@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+
+#define fast()                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);
+
+#define endl "\n"
+int main()
+{
+    int n;
+    cin >> n;
+    int k;
+    cin >> k;
+    deque<int> d1, d2;
+    for (int i = 0; i < k; i++)
+    {
+        int a;
+        cin >> a;
+        d1.push_back(a);
+    }
+    int k1;
+    cin>>k1;
+    for (int i = 0; i < k1; i++)
+    {
+        int b;
+        cin >> b;
+        d2.push_back(b);
+    }
+    ll count = 0;
+    ll dp[11];
+    dp[0] = 1;
+    for (int i = 1; i <= 10; i++)
+    {
+        dp[i] = dp[i - 1] * i;
+    }
+    ll total_sum = 9999999;
+    for (int i = 1; i <= n; i++)
+    {
+        total_sum+=(dp[n]*dp[n])/(dp[i]*dp[n-i]);
+
+    }
+    int flag = 0;
+    //cout<<total_sum<<endl;
+    while (!d1.empty() && !d2.empty())
+    {
+        if (d1.front() > d2.front())
+        {
+            int a = d1.front();
+            int b = d2.front();
+            d2.pop_front();
+            d1.pop_front();
+            d1.push_back(b);
+            d1.push_back(a);
+        }
+        else
+        {
+            int a = d1.front();
+            int b = d2.front();
+            d1.pop_front();
+            d2.pop_front();
+            d2.push_back(a);
+            d2.push_back(b);
+        }
+        count++;
+        if (count > total_sum)
+        {
+            cout << -1 << endl;
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 0)
+    {
+        if (d1.empty())
+        {
+            cout << count << " " << 2 << endl;
+        }
+        else if (d2.empty())
+        {
+            cout << count << " " << 1<< endl;
+        }
+    }
+}`

@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+int main()
+{
+    int a, b, k1, k2, n;
+    cin >> a >> b >> k1 >> k2 >> n;
+    if (k1 > k2)
+    {
+        int maxi = n / k2;
+        if (maxi <= b)
+        {
+            maxi = b;
+        }
+        else
+        {
+            int m = n % k2 + (maxi - b) * k2;
+            maxi = b + m / k1;
+        }
+        int mini = (k2 - 1) * b + (k1 - 1) * a;
+        if (mini >= n)
+        {
+            mini = 0;
+        }
+        else
+        {
+            int check = n - mini;
+            mini = check;
+        }
+        cout << mini << " " << maxi << endl;
+    }
+    else
+    {
+        int maxi = n / k1;
+        if (maxi <= a)
+        {
+            maxi = a;
+        }
+        else
+        {
+            int m = n % k1 + (maxi - a) * k1;
+            maxi = a + m / k2;
+        }
+        int mini = (k2 - 1) * b + (k1 - 1) * a;
+        if (mini > n)
+        {
+            mini = 0;
+        }
+        else
+        {
+            int check = n - mini;
+            mini = check;
+        }
+        cout << mini << " " << maxi << endl;
+    }
+}

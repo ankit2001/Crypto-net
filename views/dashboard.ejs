@@ -1,0 +1,36 @@
+<div class="row mt-5" style="opacity: 0.9;">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body mt-5">
+      <h1 class="text-center bg-primary mb-5">UPLOAD FILES</h1>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+
+
+        <div class="custom-file mt-5">
+          <input type="file" name="myfile" class="custom-file-input" id="inputGroupFile01" required>
+          <label class="custom-file-label bg.primary" for="inputGroupFile01">Choose file</label>
+        </div>
+
+        <button class="btn btn-primary m-auto">
+          submit
+        </button>
+      
+      </form>
+
+      <div class="dropdown mt-5" style="margin-left:38%">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          DOWNLOAD FILES
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+          <% for(var i=0;i<docs.length;i++) { %>
+      
+          <a class="dropdown-item" href='/download?filename=<%= docs[i].email%>'>
+          <%= docs[i].email%>
+          </a>
+          <% }%>
+        </div>
+        
+  
+</div>
+</div></div></div>
